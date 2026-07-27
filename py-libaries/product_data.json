@@ -1,0 +1,28 @@
+{
+  "store": {
+    "products": [
+      {
+        "product_id": 1,
+        "product_name": "Wireless Mouse",
+        "price": 25.99,
+        "customer": {
+          "name": "Muhammad Ali",
+          "age": 24,
+          "rating": 4.5,
+          "feedback": "Good quality and smooth performance."
+        }
+      },
+      {
+        "product_id": 2,
+        "product_name": "Mechanical Keyboard",
+        "price": 59.99,
+        "customer": {
+          "name": "Sara Ahmed",
+          "age": 28,
+          "rating": 4.8,
+          "feedback": "Excellent typing experience and durable build."
+        }
+      }
+    ]
+  }
+}
