@@ -100,6 +100,18 @@ Histograms were plotted for:
 These plots help visualize the distribution of each numerical variable.
 
 ---
+# 4. Outlier Detection and Analysis
+
+Outlier detection was performed on the numerical features using **boxplots** and the **Interquartile Range (IQR) method**.
+
+The IQR was calculated using:
+
+```text
+IQR = Q3 - Q1
+```
+The IQR method identified 15 potential outliers, with absence values ranging from 21 to 75.
+
+
 
 ## Key Insights
 
