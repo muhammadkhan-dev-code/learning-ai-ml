@@ -1,40 +1,37 @@
-# Iris Species Classification — Exploratory Data Analysis
+# Iris Species Classification
 
 ## 1. Project Overview
 
-This project uses the **Iris dataset** to explore and eventually build a machine learning classification model that predicts the species of an Iris flower based on its physical measurements.
+This project uses the Iris dataset to explore and build a machine learning classification model.
 
-The target variable is:
+The goal is to predict the species of an Iris flower using its sepal and petal measurements.
 
-* `Species`
+### Target Variable
 
-The three classes are:
+`Species`
 
-* `Iris-setosa`
-* `Iris-versicolor`
-* `Iris-virginica`
+The dataset contains three classes:
+
+- Iris-setosa
+- Iris-versicolor
+- Iris-virginica
 
 ---
 
 ## 2. Dataset Overview
 
-The dataset contains **150 observations** and the following columns:
+The dataset contains 150 rows and 6 columns.
 
-| Column          | Description                                   |
-| --------------- | --------------------------------------------- |
-| `Id`            | Unique identifier for each observation        |
-| `SepalLengthCm` | Sepal length in centimeters                   |
-| `SepalWidthCm`  | Sepal width in centimeters                    |
-| `PetalLengthCm` | Petal length in centimeters                   |
-| `PetalWidthCm`  | Petal width in centimeters                    |
-| `Species`       | Target variable representing the Iris species |
+| Column          | Description                 |
+| --------------- | --------------------------- |
+| `Id`            | Unique identifier           |
+| `SepalLengthCm` | Sepal length in centimeters |
+| `SepalWidthCm`  | Sepal width in centimeters  |
+| `PetalLengthCm` | Petal length in centimeters |
+| `PetalWidthCm`  | Petal width in centimeters  |
+| `Species`       | Target variable             |
 
-### Dataset Shape
-
-```text
-Rows: 150
-Columns: 6
-```
+The `Id` column was removed because it does not provide useful information for classification.
 
 ---
 
@@ -42,23 +39,11 @@ Columns: 6
 
 The dataset was checked for common data quality problems.
 
-### Missing Values
+- No missing values
+- No null values
+- No duplicate rows
 
-There are **no missing values** in the dataset.
-
-```text
-Missing values: 0
-```
-
-### Null Values
-
-There are **no null values** in the dataset.
-
-### Duplicate Values
-
-No duplicate rows were found in the dataset.
-
-Therefore, the dataset is clean enough to continue with the exploratory data analysis and machine learning pipeline.
+Therefore, the dataset is clean and ready for analysis and machine learning.
 
 ---
 
@@ -66,172 +51,113 @@ Therefore, the dataset is clean enough to continue with the exploratory data ana
 
 The target variable is `Species`.
 
-Using:
+The class distribution is:
 
-```python
-y.value_counts()
-```
-
-the class distribution is:
-
-```text
-Iris-setosa        50
-Iris-versicolor    50
-Iris-virginica     50
-```
-
-Each class contains exactly **50 observations**.
-
-### Conclusion
-
-The target variable is **perfectly balanced**.
-
-This is useful for classification because there is no significant class imbalance that would cause one species to dominate the model's learning process.
+| Species         | Count |
+| --------------- | ----: |
+| Iris-setosa     |    50 |
+| Iris-versicolor |    50 |
+| Iris-virginica  |    50 |
 
 ---
 
-## 5. Feature Analysis
+## 5. Exploratory Data Analysis
 
-The dataset contains four numerical features:
+Several EDA techniques were performed to understand the dataset.
 
-```text
-SepalLengthCm
-SepalWidthCm
-PetalLengthCm
-PetalWidthCm
-```
+### Histogram Analysis
 
-The `Id` column does not represent a meaningful biological measurement, so it should not be used as a machine learning feature.
+The main observation was that `PetalLengthCm` and `PetalWidthCm` show clear groups of values, suggesting that these features may be useful for distinguishing between species.
 
-It can be removed using:
+### Correlation Analysis
 
-```python
-df = df.drop('Id', axis=1)
-```
+A correlation heatmap was used to understand relationships between numerical features.
 
----
+The strongest positive correlation was found between:
 
-## 6. Histogram Analysis
+- `PetalLengthCm`
+- `PetalWidthCm`
 
-Histograms were created to understand the distribution of the numerical features.
+This indicates that flowers with longer petals generally tend to have wider petals.
 
-### SepalLengthCm
+### Boxplot Analysis
 
-`SepalLengthCm` values are approximately distributed between **4.3 and 7.9 cm**.
+Boxplots were used to compare the feature distributions across the three species.
 
-The values are spread across several ranges, with higher frequencies around the middle of the distribution. No obvious extreme outliers are visible from the histogram.
+The petal features showed clearer differences between species compared with the sepal features.
 
-### SepalWidthCm
+### Pairplot Analysis
 
-`SepalWidthCm` values range approximately from **2.0 to 4.4 cm**.
+The pairplot showed that the three species form relatively distinct groups.
 
-Most observations are concentrated around **2.5–3.5 cm**, with the highest frequency around approximately 3 cm.
+The clearest separation was observed when comparing:
 
-### PetalLengthCm
+- `PetalLengthCm`
+- `PetalWidthCm`
 
-`PetalLengthCm` shows a more interesting distribution.
-
-There is a large concentration of observations around **1–2 cm**, followed by another group at larger values.
-
-This indicates that the feature may contain strong information for distinguishing between the different Iris species.
-
-### PetalWidthCm
-
-`PetalWidthCm` also shows clearly separated groups of values.
-
-The observations form groups around smaller, medium, and larger petal widths.
-
-This suggests that `PetalWidthCm` is likely to be a strong predictive feature for classifying the Iris species.
+This suggests that petal measurements are particularly useful for species classification.
 
 ---
 
-## 7. Important EDA Observation
+## 6. Data Preparation
 
-The distributions of `PetalLengthCm` and `PetalWidthCm` appear to have multiple groups.
+The data was divided into:
 
-This is likely because the dataset contains three different species with different physical characteristics.
+- Features (`X`)
+- Target (`y`)
 
-Therefore, the petal-related features may provide strong separation between:
+The `Species` column was used as the target variable, while the four measurement columns were used as features.
 
-```text
-Iris-setosa
-Iris-versicolor
-Iris-virginica
-```
+The dataset was split into:
 
-This is an important observation because the goal of the project is to classify the species.
+- 80% Training Data
+- 20% Testing Data
 
----
-
-## 8. Current EDA Status
-
-The following analysis has been completed:
-
-* [x] Load the dataset
-* [x] Understand dataset shape
-* [x] Check column names
-* [x] Check data types
-* [x] Check missing values
-* [x] Check null values
-* [x] Check duplicate rows
-* [x] Analyze target variable
-* [x] Check class distribution
-* [x] Analyze numerical feature distributions using histograms
-* [x] Identify potentially useful features
+Stratified splitting was used to maintain the balanced class distribution.
 
 ---
 
-## 9. Next Steps
+## 7. Machine Learning Models
 
-The next stage of the analysis will focus on understanding the relationship between the features and the target variable.
+Three classification models were tested:
 
-Planned steps:
+1. Logistic Regression
+2. K-Nearest Neighbors (KNN)
+3. Gaussian Naive Bayes
 
-1. **Boxplots by Species**
+The models were first trained using the original features without scaling.
 
-   * Compare each feature across the three Iris species.
-   * Identify differences and possible outliers.
-
-2. **Correlation Analysis**
-
-   * Understand relationships between numerical features.
-
-3. **Pairplot**
-
-   * Visualize relationships between all features while separating observations by species.
-
-4. **Feature and Target Separation**
-
-   ```python
-   X = df.drop('Species', axis=1)
-   y = df['Species']
-   ```
-
-5. **Train/Test Split**
-
-   * Split the dataset into training and testing data.
-
-6. **Feature Scaling**
-
-   * Apply scaling where required by the selected machine learning algorithms.
-
-7. **Model Training**
-
-   * Train multiple classification algorithms.
-
-8. **Model Evaluation**
-
-   * Compare models using accuracy, precision, recall, F1-score, and confusion matrix.
+After that, `StandardScaler` was applied and the same models were trained again.
 
 ---
+
+## 8. Model Performance
+
+The accuracy results before and after feature scaling are:
+
+| Model               | Before Scaling | After Scaling |
+| ------------------- | -------------: | ------------: |
+| Logistic Regression |         96.67% |        93.33% |
+| KNN                 |        100.00% |        93.33% |
+| Naive Bayes         |         96.67% |        96.67% |
+
+### Observations
+
+- Logistic Regression decreased from **96.67% to 93.33%** after scaling.
+- KNN decreased from **100% to 93.33%** after scaling.
+- Naive Bayes remained unchanged at **96.67%**.
+- The best result in this experiment was **KNN before scaling with 100% accuracy**.
+
 ---
-* PetalLengthCm and PetalWidthCm have the strongest positive correlation, while SepalWidthCm has relatively weaker relationships with the other features. The strong correlation between petal length and petal width indicates that these features carry related information and may be highly useful for Iris species classification
+
+## 9. Confusion Matrix
+
+Confusion matrices were used to understand the correct and incorrect predictions for each model.
+The confusion matrix compares:
+
+- Actual Species
+- Predicted Species
+
+Correct predictions appear on the diagonal, while incorrect predictions appear outside the diagonal.
+
 ---
-
-## Conclusion
-
-So far, the Iris dataset has been successfully inspected and cleaned. It contains **150 observations with three equally represented species and no missing, null, or duplicate values**.
-
-The histogram analysis shows that the **petal measurements, particularly `PetalLengthCm` and `PetalWidthCm`, appear to provide strong separation between different species**.
-
-The next important step is to perform **boxplot analysis and pairplot visualization by species** before moving into the machine learning modeling stage.
