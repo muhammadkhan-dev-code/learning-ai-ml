@@ -1,0 +1,16 @@
+flappybirdv0:
+  env_name: FlappyBird-v0
+  epislon_init: 1.0
+  epislon_min: 0.05
+  epislon_decay: 0.995
+  replay_memory_size: 100000
+  minibatch_size: 32
+  network_sync_rate: 10
+  alpha: 0.001
+  gamma: 0.99
+  reward_threshold: 1000
+
+
+  
+
+
