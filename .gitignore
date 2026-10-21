@@ -17,6 +17,9 @@ ENV/
 .ipynb_checkpoints/
 .virtual_documents/
 
+# progress.md file should not be on github
+*.progress.md
+progress.md
 # =========================
 # VS Code
 # =========================
