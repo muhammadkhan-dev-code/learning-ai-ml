@@ -1,0 +1,13 @@
+ Introduction to Python
+
+Python is a high-level, interpreted programming language. It is easy to learn and widely used in web development, data science, artificial intelligence, machine learning, and automation.
+
+Python provides simple syntax, a large collection of libraries, and strong community support. It is suitable for both beginners and experienced programmers.
+
+Example:
+
+
+print("Hello, World!")
+
+
+This program displays the message "Hello, World!" on the screen.

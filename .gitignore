@@ -17,6 +17,8 @@ ENV/
 .ipynb_checkpoints/
 .virtual_documents/
 
+anaconda_projects/deep_learning/Transformers/text_summarizer/saved_summary_model/
+
 # progress.md file should not be on github
 *.progress.md
 progress.md
