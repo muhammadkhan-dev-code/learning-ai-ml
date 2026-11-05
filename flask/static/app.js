@@ -1,0 +1,2 @@
+console.log('Hello THIS IS THE JAVASCRIPT FILE')
+alert('Hello THIS IS THE JAVASCRIPT FILE')
